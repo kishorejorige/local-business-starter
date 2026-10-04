@@ -2,6 +2,72 @@ import { useEffect } from "react";
 import business from "./data/business";
 import "./App.css";
 
+function parseTimeComponent(str) {
+  if (!str) return null;
+  const match = str.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!match) return null;
+  let [, hours, minutes, period] = match;
+  let h = parseInt(hours, 10);
+  if (period.toUpperCase() === "PM" && h < 12) h += 12;
+  if (period.toUpperCase() === "AM" && h === 12) h = 0;
+  return `${String(h).padStart(2, "0")}:${minutes}`;
+}
+
+function parseHoursRange(timeStr) {
+  if (!timeStr) return null;
+  const parts = timeStr.split(/[-–—]/);
+  if (parts.length !== 2) return null;
+  const opens = parseTimeComponent(parts[0]);
+  const closes = parseTimeComponent(parts[1]);
+  if (!opens || !closes) return null;
+  return { opens, closes };
+}
+
+function generateJsonLd(business) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": business.name,
+    "description": business.description,
+  };
+
+  if (business.contact?.phone) {
+    schema.telephone = business.contact.phone;
+  }
+
+  if (business.contact?.email) {
+    schema.email = business.contact.email;
+  }
+
+  if (business.location?.address) {
+    schema.address = {
+      "@type": "PostalAddress",
+      "streetAddress": business.location.address,
+    };
+  }
+
+  if (Array.isArray(business.hours) && business.hours.length > 0) {
+    const openingHoursSpec = business.hours
+      .map((item) => {
+        const parsed = parseHoursRange(item.time);
+        if (!parsed) return null;
+        return {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": item.day,
+          "opens": parsed.opens,
+          "closes": parsed.closes,
+        };
+      })
+      .filter(Boolean);
+
+    if (openingHoursSpec.length > 0) {
+      schema.openingHoursSpecification = openingHoursSpec;
+    }
+  }
+
+  return schema;
+}
+
 function App() {
   useEffect(() => {
     document.title = business.name;
@@ -13,6 +79,15 @@ function App() {
       document.head.appendChild(metaDescription);
     }
     metaDescription.setAttribute("content", business.description);
+
+    let jsonLdScript = document.getElementById("local-business-jsonld");
+    if (!jsonLdScript) {
+      jsonLdScript = document.createElement("script");
+      jsonLdScript.id = "local-business-jsonld";
+      jsonLdScript.type = "application/ld+json";
+      document.head.appendChild(jsonLdScript);
+    }
+    jsonLdScript.textContent = JSON.stringify(generateJsonLd(business), null, 2);
   }, []);
 
   const whatsappUrl = `https://wa.me/${business.contact.whatsapp}?text=${encodeURIComponent(
