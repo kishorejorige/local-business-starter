@@ -93,6 +93,8 @@ function App() {
   const whatsappUrl = `https://wa.me/${business.contact.whatsapp}?text=${encodeURIComponent(
     `Hello ${business.name}, I would like to know more about your services.`
   )}`;
+  const telUrl = `tel:${business.contact.phone.replace(/[^\d+]/g, "")}`;
+  const mailtoUrl = `mailto:${business.contact.email}`;
 
   return (
     <div className="site">
@@ -145,7 +147,7 @@ function App() {
                   Get a Free Enquiry
                 </a>
 
-                <a className="secondary-button" href={`tel:${business.contact.phone}`}>
+                <a className="secondary-button" href={telUrl}>
                   Call Now
                 </a>
               </div>
@@ -338,9 +340,9 @@ function App() {
 
                 <a
                   className="secondary-button"
-                  href={`tel:${business.contact.phone}`}
+                  href={telUrl}
                 >
-                  {business.contact.phone}
+                  Call {business.contact.phone}
                 </a>
               </div>
             </div>
@@ -372,7 +374,9 @@ function App() {
 
                 <div>
                   <strong>Phone</strong>
-                  <p>{business.contact.phone}</p>
+                  <a className="contact-link" href={telUrl}>
+                    {business.contact.phone}
+                  </a>
                 </div>
               </div>
 
@@ -381,7 +385,9 @@ function App() {
 
                 <div>
                   <strong>Email</strong>
-                  <p>{business.contact.email}</p>
+                  <a className="contact-link" href={mailtoUrl}>
+                    {business.contact.email}
+                  </a>
                 </div>
               </div>
             </div>

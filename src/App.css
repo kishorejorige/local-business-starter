@@ -474,12 +474,21 @@
   margin-bottom: 4px;
 }
 
-.contact-row p {
+.contact-row p,
+.contact-link {
+  display: inline-block;
   margin: 0;
   color: #d1d5db;
   line-height: 1.5;
   overflow-wrap: anywhere;
   word-break: break-word;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a.contact-link:hover {
+  color: white;
+  text-decoration: underline;
 }
 
 .location-link {
