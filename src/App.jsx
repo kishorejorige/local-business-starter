@@ -266,6 +266,16 @@ function App() {
                 <div>
                   <strong>Location</strong>
                   <p>{business.location.address}</p>
+                  {business.location.mapUrl && (
+                    <a
+                      className="location-link"
+                      href={business.location.mapUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      View on Google Maps →
+                    </a>
+                  )}
                 </div>
               </div>
 
