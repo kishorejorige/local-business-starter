@@ -23,7 +23,12 @@ function App() {
             <a href="#contact">Contact</a>
           </nav>
 
-          <a className="nav-button" href={whatsappUrl} target="_blank" rel="noreferrer">
+          <a
+            className="nav-button"
+            href={whatsappUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
             WhatsApp
           </a>
         </div>
@@ -41,7 +46,12 @@ function App() {
               <p>{business.description}</p>
 
               <div className="hero-actions">
-                <a className="primary-button" href={whatsappUrl} target="_blank" rel="noreferrer">
+                <a
+                  className="primary-button"
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Get a Free Enquiry
                 </a>
 
@@ -58,16 +68,24 @@ function App() {
             </div>
 
             <div className="hero-card">
-              <div className="hero-card-icon">🔧</div>
-              <h2>Home services made simple</h2>
-              <p>
-                From everyday repairs to regular maintenance, get dependable
-                service for your home or business.
-              </p>
+              <img
+                src="/images/hero-home-services.svg"
+                alt="Trusted local home services"
+                className="hero-image"
+              />
 
-              <a href="#services" className="card-link">
-                Explore our services →
-              </a>
+              <div className="hero-card-content">
+                <h2>Home services made simple</h2>
+
+                <p>
+                  From everyday repairs to regular maintenance, get dependable
+                  service for your home or business.
+                </p>
+
+                <a href="#services" className="card-link">
+                  Explore our services →
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -90,7 +108,12 @@ function App() {
                   <div className="service-icon">✓</div>
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
-                  <a href={whatsappUrl} target="_blank" rel="noreferrer">
+
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     Enquire now →
                   </a>
                 </article>
@@ -115,10 +138,12 @@ function App() {
                   <strong>01</strong>
                   <span>Easy enquiry</span>
                 </div>
+
                 <div>
                   <strong>02</strong>
                   <span>Clear communication</span>
                 </div>
+
                 <div>
                   <strong>03</strong>
                   <span>Reliable service</span>
@@ -134,19 +159,25 @@ function App() {
             <div className="section-heading">
               <span className="eyebrow">OUR WORK</span>
               <h2>Service Gallery</h2>
-              <p>Replace these demo cards with real project photos for each client.</p>
+              <p>
+                Replace these demo cards with real project photos for each
+                client.
+              </p>
             </div>
 
             <div className="gallery-grid">
               <div className="gallery-item">
                 <span>Electrical</span>
               </div>
+
               <div className="gallery-item">
                 <span>Plumbing</span>
               </div>
+
               <div className="gallery-item">
                 <span>AC Service</span>
               </div>
+
               <div className="gallery-item">
                 <span>Painting</span>
               </div>
@@ -165,7 +196,10 @@ function App() {
 
             <div className="reviews-grid">
               {business.reviews.map((review, index) => (
-                <article className="review-card" key={`${review.name}-${index}`}>
+                <article
+                  className="review-card"
+                  key={`${review.name}-${index}`}
+                >
                   <div className="stars">★★★★★</div>
                   <p>“{review.text}”</p>
                   <strong>{review.name}</strong>
@@ -180,18 +214,28 @@ function App() {
           <div className="container contact-grid">
             <div>
               <span className="eyebrow">GET IN TOUCH</span>
+
               <h2>Need a service?</h2>
+
               <p>
                 Contact us today and tell us what you need. We'll help you with
                 the next step.
               </p>
 
               <div className="contact-buttons">
-                <a className="primary-button" href={whatsappUrl} target="_blank" rel="noreferrer">
+                <a
+                  className="primary-button"
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Message on WhatsApp
                 </a>
 
-                <a className="secondary-button" href={`tel:${business.phone}`}>
+                <a
+                  className="secondary-button"
+                  href={`tel:${business.phone}`}
+                >
                   {business.phone}
                 </a>
               </div>
@@ -202,6 +246,7 @@ function App() {
 
               <div className="contact-row">
                 <span>📍</span>
+
                 <div>
                   <strong>Location</strong>
                   <p>{business.address}</p>
@@ -210,6 +255,7 @@ function App() {
 
               <div className="contact-row">
                 <span>📞</span>
+
                 <div>
                   <strong>Phone</strong>
                   <p>{business.phone}</p>
@@ -218,6 +264,7 @@ function App() {
 
               <div className="contact-row">
                 <span>✉️</span>
+
                 <div>
                   <strong>Email</strong>
                   <p>{business.email}</p>
@@ -237,7 +284,10 @@ function App() {
           </div>
 
           <div>
-            <p>© {new Date().getFullYear()} {business.name}</p>
+            <p>
+              © {new Date().getFullYear()} {business.name}
+            </p>
+
             <p>Built with the Local Business Starter</p>
           </div>
         </div>

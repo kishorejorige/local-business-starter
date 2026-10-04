@@ -31,10 +31,12 @@
 }
 
 .logo {
-  color: #111827;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #111827;
   text-decoration: none;
+  line-height: 1.2;
 }
 
 .navbar nav {
@@ -254,7 +256,7 @@
   letter-spacing: -0.04em;
 }
 
-.about-text > p {
+.about-text>p {
   margin: 0;
   color: #4b5563;
   font-size: 1.1rem;
@@ -361,7 +363,7 @@
   letter-spacing: -0.05em;
 }
 
-.contact-section > .container > div > p {
+.contact-section>.container>div>p {
   max-width: 580px;
   color: #d1d5db;
   line-height: 1.8;
@@ -396,9 +398,15 @@
   gap: 16px;
   padding: 18px 0;
   border-top: 1px solid #374151;
+  min-width: 0;
 }
 
-.contact-row > span {
+.contact-row>div {
+  min-width: 0;
+  flex: 1;
+}
+
+.contact-row>span {
   font-size: 1.4rem;
 }
 
@@ -411,6 +419,8 @@
   margin: 0;
   color: #d1d5db;
   line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* Footer */
@@ -456,7 +466,21 @@
 
 @media (max-width: 850px) {
   .navbar nav {
-    display: none;
+    display: flex;
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .nav-inner {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .nav-button {
+    margin-left: auto;
   }
 
   .hero {
@@ -466,7 +490,7 @@
   .hero-grid,
   .about-grid,
   .contact-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 40px;
   }
 
@@ -510,11 +534,16 @@
   .hero-actions,
   .contact-buttons {
     flex-direction: column;
+    width: 100%;
+    min-width: 0;
   }
 
   .hero-actions a,
   .contact-buttons a {
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .services-grid,
