@@ -2,7 +2,7 @@ import business from "./data/business";
 import "./App.css";
 
 function App() {
-  const whatsappUrl = `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/${business.contact.whatsapp}?text=${encodeURIComponent(
     `Hello ${business.name}, I would like to know more about your services.`
   )}`;
 
@@ -19,6 +19,7 @@ function App() {
             <a href="#home">Home</a>
             <a href="#services">Services</a>
             <a href="#about">About</a>
+            <a href="#gallery">Gallery</a>
             <a href="#reviews">Reviews</a>
             <a href="#contact">Contact</a>
           </nav>
@@ -55,7 +56,7 @@ function App() {
                   Get a Free Enquiry
                 </a>
 
-                <a className="secondary-button" href={`tel:${business.phone}`}>
+                <a className="secondary-button" href={`tel:${business.contact.phone}`}>
                   Call Now
                 </a>
               </div>
@@ -160,27 +161,17 @@ function App() {
               <span className="eyebrow">OUR WORK</span>
               <h2>Service Gallery</h2>
               <p>
-                Replace these demo cards with real project photos for each
-                client.
+                Explore recent projects and quality home maintenance work completed by our team.
               </p>
             </div>
 
             <div className="gallery-grid">
-              <div className="gallery-item">
-                <span>Electrical</span>
-              </div>
-
-              <div className="gallery-item">
-                <span>Plumbing</span>
-              </div>
-
-              <div className="gallery-item">
-                <span>AC Service</span>
-              </div>
-
-              <div className="gallery-item">
-                <span>Painting</span>
-              </div>
+              {business.gallery.map((item) => (
+                <div className="gallery-item" key={item.title}>
+                  <img src={item.image} alt={item.alt} />
+                  <span>{item.title}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -234,9 +225,9 @@ function App() {
 
                 <a
                   className="secondary-button"
-                  href={`tel:${business.phone}`}
+                  href={`tel:${business.contact.phone}`}
                 >
-                  {business.phone}
+                  {business.contact.phone}
                 </a>
               </div>
             </div>
@@ -249,7 +240,7 @@ function App() {
 
                 <div>
                   <strong>Location</strong>
-                  <p>{business.address}</p>
+                  <p>{business.location.address}</p>
                 </div>
               </div>
 
@@ -258,7 +249,7 @@ function App() {
 
                 <div>
                   <strong>Phone</strong>
-                  <p>{business.phone}</p>
+                  <p>{business.contact.phone}</p>
                 </div>
               </div>
 
@@ -267,7 +258,7 @@ function App() {
 
                 <div>
                   <strong>Email</strong>
-                  <p>{business.email}</p>
+                  <p>{business.contact.email}</p>
                 </div>
               </div>
             </div>
@@ -308,3 +299,7 @@ function App() {
 }
 
 export default App;
+
+
+
+

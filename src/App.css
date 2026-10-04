@@ -291,22 +291,38 @@
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  gap: 20px;
 }
 
 .gallery-item {
-  min-height: 260px;
   display: flex;
-  align-items: flex-end;
-  padding: 22px;
-  border-radius: 18px;
-  background: linear-gradient(145deg, #e5e7eb, #f8fafc);
+  flex-direction: column;
   border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: white;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  background: #f8fafc;
 }
 
 .gallery-item span {
+  padding: 16px 20px;
   color: #111827;
-  font-weight: 800;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 
 /* Reviews */
@@ -551,10 +567,6 @@
   .gallery-grid,
   .about-points {
     grid-template-columns: 1fr;
-  }
-
-  .gallery-item {
-    min-height: 180px;
   }
 
   .footer-inner {
