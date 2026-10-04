@@ -20,6 +20,7 @@ function App() {
             <a href="#services">Services</a>
             <a href="#about">About</a>
             <a href="#gallery">Gallery</a>
+            <a href="#hours">Hours</a>
             <a href="#reviews">Reviews</a>
             <a href="#contact">Contact</a>
           </nav>
@@ -176,8 +177,32 @@ function App() {
           </div>
         </section>
 
+        {/* Hours */}
+        <section className="section section-alt" id="hours">
+          <div className="container">
+            <div className="section-heading">
+              <span className="eyebrow">WHEN WE ARE OPEN</span>
+              <h2>Opening Hours</h2>
+              <p>
+                Visit us or get in touch during our weekly operating hours.
+              </p>
+            </div>
+
+            <div className="hours-card">
+              <div className="hours-list">
+                {business.hours.map((item) => (
+                  <div className="hours-row" key={item.day}>
+                    <span className="hours-day">{item.day}</span>
+                    <span className="hours-time">{item.time}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Reviews */}
-        <section className="section section-alt" id="reviews">
+        <section className="section" id="reviews">
           <div className="container">
             <div className="section-heading">
               <span className="eyebrow">CUSTOMER FEEDBACK</span>
