@@ -1,7 +1,20 @@
+import { useEffect } from "react";
 import business from "./data/business";
 import "./App.css";
 
 function App() {
+  useEffect(() => {
+    document.title = business.name;
+
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement("meta");
+      metaDescription.name = "description";
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute("content", business.description);
+  }, []);
+
   const whatsappUrl = `https://wa.me/${business.contact.whatsapp}?text=${encodeURIComponent(
     `Hello ${business.name}, I would like to know more about your services.`
   )}`;
