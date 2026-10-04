@@ -1,3 +1,6 @@
+// Local Business Configuration Template
+// Replace demo values below with real client data before publishing.
+
 const business = {
   name: "Sri Lakshmi Home Services",
   tagline: "Reliable home repair & maintenance services",
